@@ -22,6 +22,7 @@ return new class extends Migration
             $table->string('lokasi');
             $table->string('keterangan');
             $table->string('foto');
+            $table->string('kode');
             $table->timestamps();
         });
     }

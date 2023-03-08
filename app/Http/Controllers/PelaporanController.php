@@ -48,7 +48,7 @@ class PelaporanController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request) // buat variabel dari penerimaanya terus buat if else 
+    public function store(Request $request) // buat variabel dari penerimaanya terus buat if else
     {
       $this->validate($request, [
         'siswa' => 'required',
@@ -63,15 +63,18 @@ class PelaporanController extends Controller
       $destinationPath = public_path('/image');
       $foto->move($destinationPath, $namafoto);
 
+      $kode = time().'-'.$request->get('siswa');
+
       Pelaporan::create([
         'siswa_id' => $request->get('siswa'),
         'kategori_id' => $request->get('kategori'),
         'lokasi' => $request->get('lokasi'),
         'keterangan' => $request->get('keterangan'),
-        'foto' => $namafoto
+        'foto' => $namafoto,
+        'kode' => $kode
       ]);
 
-      return redirect()->back()->with('message', 'Laporan Berhasil Ditambahkan!')
+      return redirect()->back()->with('message', "Simpan Kode Ini: " . $kode . " Untuk Keperluan Melihat Keluhan Anda")
                               ->with('status', 'success');
     }
 

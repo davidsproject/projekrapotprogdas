@@ -87,11 +87,6 @@
                   <img src="{{asset('preview.png')}}" id = "img" alt = "Preview" style = "width: 100%; height: 100%">
                 </div>
               </div>
-
-              <div class="form-group" style>
-                <label for="">Grup</label>
-                <input type="v" name="" value="">
-              </div>
             </div>
 
             <div class="card-footer">

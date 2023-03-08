@@ -12,6 +12,7 @@
         <thead>
         <tr>
           <th>#</th>
+          <th>Kode</th>
           <th>Siswa</th>
           <th>Kategori</th>
           <th>Lokasi</th>
@@ -29,6 +30,7 @@
           @foreach($pelaporans as $pelaporan)
         <tr>
           <th>{{$i++;}}</th>
+          <th style = "font-weight: normal!important;">{{$pelaporan->kode}}</th>
           <td>{{$pelaporan->siswa->nama}}</td>
           <td>{{$pelaporan->kategori->keterangan}}</td>
           <td>{{$pelaporan->lokasi}}</td>

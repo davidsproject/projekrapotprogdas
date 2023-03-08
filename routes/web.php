@@ -18,7 +18,7 @@ use App\Http\Controllers\KategoriController;
 */
 
 
-Auth::routes(['register'=>false]);
+Auth::routes(['register'=>true]);
 
 Route::get('/', [PelaporanController::class, 'welcome'])->name('welcome');
 Route::get('/profile', [PelaporanController::class, 'profile'])->name('profile');
