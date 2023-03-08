@@ -38,13 +38,7 @@ class RegisterController extends Controller
      */
     public function __construct()
     {
-
         $this->middleware('guest');
-    }
-
-    public function showRegistrationForm(){
-      $title = "Registrasi Pengaduan Masyarakat";
-      return view('auth.register', compact('title'));
     }
 
     /**
@@ -59,8 +53,6 @@ class RegisterController extends Controller
             'name' => ['required', 'string', 'max:255'],
             'email' => ['required', 'string', 'email', 'max:255', 'unique:users'],
             'password' => ['required', 'string', 'min:8', 'confirmed'],
-            'nik' => ['required', 'unique:users'],
-            'telp' => ['required', 'string', 'max:255'],
         ]);
     }
 
@@ -76,9 +68,6 @@ class RegisterController extends Controller
             'name' => $data['name'],
             'email' => $data['email'],
             'password' => Hash::make($data['password']),
-            'role' => 0,
-            'nik' => $data['nik'],
-            'telp' => $data['telp'],
         ]);
     }
 }

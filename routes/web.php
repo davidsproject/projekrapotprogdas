@@ -1,12 +1,10 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
-use App\Http\Controllers\RoleController;
-use App\Http\Controllers\PermissionController;
-use App\Http\Controllers\PengaduanController;
-use App\Http\Controllers\TanggapanController;
-
-
+use App\Http\Controllers\SiswaController;
+use App\Http\Controllers\PelaporanController;
+use App\Http\Controllers\AspirasiController;
+use App\Http\Controllers\KategoriController;
 
 /*
 |--------------------------------------------------------------------------
@@ -19,19 +17,16 @@ use App\Http\Controllers\TanggapanController;
 |
 */
 
-Route::get('/', function () {
-    return view('welcome');
-});
 
-Auth::routes();
+Auth::routes(['register'=>false]);
 
-Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('dashboard')->middleware('auth');
+Route::get('/', [PelaporanController::class, 'welcome'])->name('welcome');
+Route::get('/profile', [PelaporanController::class, 'profile'])->name('profile');
+Route::get('/search', [PelaporanController::class, 'search'])->name('search');
 
-Route::resource('role', RoleController::class)->middleware('auth');
-Route::resource('permission', PermissionController::class)->middleware('auth');
-Route::resource('pengaduan', PengaduanController::class)->middleware('auth');
-Route::resource('tanggapan', TanggapanController::class)->middleware('auth');
+Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home')->middleware('auth');
 
-Route::get('/user/pengaduan', [PengaduanController::class, 'pengaduanUser'])->name('pengaduanUser')->middleware('auth');
-Route::get('/laporan', [PengaduanController::class, 'laporan'])->name('laporan')->middleware('auth');
-Route::get('/laporan/cetak', [PengaduanController::class, 'pdf'])->name('pdf')->middleware('auth');
+Route::resource('siswa', SiswaController::class)->middleware('auth');
+Route::resource('pelaporan', PelaporanController::class); // mendapatkan auth spesial tertentu
+Route::resource('aspirasi', AspirasiController::class)->middleware('auth');
+Route::resource('kategori', KategoriController::class)->middleware('auth');
